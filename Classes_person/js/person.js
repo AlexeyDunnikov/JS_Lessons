@@ -1,3 +1,5 @@
+import { roles } from "./options.js";
+
 export class Person {
   constructor(name = "", family = "", surName = "", money = 0, role = "") {
     this.name = name;
