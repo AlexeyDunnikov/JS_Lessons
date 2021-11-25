@@ -3,13 +3,13 @@ const slidesPlugin = (activeSlide = 0) => {
 
   slides[activeSlide].classList.add("active");
 
-  for (const slide of slides) {
+  slides.forEach((slide) => {
     slide.addEventListener("click", (evt) => {
       clearActiveClasses(slides);
 
       evt.target.classList.add("active");
     });
-  }
+  });
 
   const clearActiveClasses = (slides) => {
     slides.forEach((item) => item.classList.remove("active"));

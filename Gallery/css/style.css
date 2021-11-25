@@ -1,15 +1,13 @@
-@import url('./reset.css');
-@import url('./global.css');
+@import url("./reset.css");
+@import url("./global.css");
 
-
-
-.container{
+.container {
   width: 100%;
   display: flex;
   padding: 0 20px;
 }
 
-.slide{
+.slide {
   position: relative;
   height: 80vh;
   border-radius: 20px;
@@ -23,16 +21,16 @@
   transition: ease-in-out 0.5s;
 }
 
-.slide.active{
+.slide.active {
   flex: 10;
 }
 
-.slide.active h3{
+.slide.active h3 {
   opacity: 1;
   transition: opacity 0.3s ease-in 0.4s;
 }
 
-.slide h3{
+.slide h3 {
   position: absolute;
   font-size: 24px;
   line-height: 28px;
