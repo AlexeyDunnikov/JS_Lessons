@@ -19,7 +19,7 @@ promise
     return new Promise((resolve, reject) => {
       setTimeout(() => {
         data.modified = true;
-        reject(new Error("Неизвестная ошибка"));
+        //reject(new Error("Неизвестная ошибка"));
         resolve(data);
       }, 2000);
     });
@@ -32,4 +32,13 @@ promise
   .then((data) => {
     console.log(data);
   })
-  .catch((err) => console.error("Error: ", err));
+  .catch((err) => console.error("Error: ", err))
+  .finally(() => console.log('Finally'))
+
+const sleep = ms => {
+    return new Promise((resolve) => {
+        setTimeout(() => resolve(), ms)
+    })
+}
+
+sleep(2000).then(() => console.log('After 2s'));
