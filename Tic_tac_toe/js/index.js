@@ -5,7 +5,7 @@ const gameOptions = {
 };
 
 class Game {
-    players = [];
+  players = [];
 
   constructor() {
     this.activePlayerInd = 0;
@@ -16,7 +16,6 @@ class Game {
     this.addCells();
 
     this.fillVirtualField();
-    console.log(this.virtualField);
   }
 
   play() {
@@ -25,11 +24,42 @@ class Game {
         return;
       }
 
-      evt.target.dataset.value = this.activePlayerInd === 0 ? 'cross' : 'null';
+      evt.target.dataset.value = this.activePlayerInd === 0 ? "cross" : "null";
       this.updateVirtualField(evt.target);
+
+      console.log(this.checkWinner(this.virtualField));
+
+      if (this.checkWinner(this.virtualField)){
+        this.activePlayer.win();
+      }
 
       this.changeActivity();
     });
+  }
+
+  checkWinner(arr) {
+    function Eq(a, b, c) {
+      return a && a == b && a == c;
+    }
+    for (let i = 0; i < 3; i++) {
+        if (Eq(arr[0][i], arr[1][i], arr[2][i])) {
+          return arr[0][i];
+        }
+
+        if (Eq(arr[i][0], arr[i][1], arr[i][2])) {
+          return arr[i][0];
+        }
+    }
+
+    if (Eq(arr[0][0], arr[1][1], arr[2][2])) {
+      return arr[0][0];
+    }
+
+    if (Eq(arr[0][2], arr[1][1], arr[2][1])) {
+      return arr[0][2];
+    }
+
+    return 0;
   }
 
   addPlayer(player) {
@@ -43,6 +73,8 @@ class Game {
     if (this.activePlayerInd > this.players.length - 1) {
       this.activePlayerInd = 0;
     }
+
+    this.activePlayer = this.players[this.activePlayerInd];
   }
 
   addCells() {
@@ -85,9 +117,9 @@ class Game {
     }
   }
 
-  updateVirtualField(item){
-      this.virtualField[item.dataset.row][item.dataset.coll] = item.dataset.value;
-      console.log(this.virtualField);
+  updateVirtualField(item) {
+    this.virtualField[item.dataset.row][item.dataset.coll] = item.dataset.value;
+    console.log(this.virtualField);
   }
 }
 
