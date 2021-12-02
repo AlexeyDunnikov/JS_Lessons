@@ -9,12 +9,10 @@ for (let i = 0; i < arr.length; i++) {
 }
 
 oddArr.sort((a, b) => a - b)
-
-let j = 0; 
+ 
 for (let i = 0; i < arr.length; i++) {
     if (arr[i] % 2 === 1) {
-      arr[i] = oddArr[j];
-      j++;
+      arr[i] = oddArr.shift();
     }
 }
 
