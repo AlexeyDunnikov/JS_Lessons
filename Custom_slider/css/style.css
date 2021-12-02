@@ -1,0 +1,156 @@
+@import url('./reset.css');
+@import url('./global.css');
+
+.container{
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
+}
+
+.card{
+  display: flex;
+  justify-content: center;
+  width: 100%;
+}
+
+.card__content{
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.card__img-box{
+  width: 500px;
+  height: 400px;
+  margin-right: 50px;
+}
+
+.card__img{
+  height: 100%;
+  width: 100%;
+  object-fit: cover;
+}
+
+.card__title{
+  font-size: 36px;
+  line-height: 44px;
+  color: #000;
+  margin: 0;
+}
+
+.card__description{
+  font-size: 20px;
+  line-height: 24px;
+}
+
+.buttons{
+  margin-left: auto;
+  cursor: pointer;
+}
+
+.select {
+  position: relative;
+  width: 100%;
+}
+
+.select__toggle {
+  position: relative;
+  background-color: #fff;
+  border: 1px solid #ccc;
+  border-radius: 0.3125rem;
+  cursor: pointer;
+  align-items: center;
+  width: 100%;
+  font-size: 1rem;
+  padding: 5px 30px 5px 10px;
+  line-height: 1.4;
+  user-select: none;
+  font-size: 1rem;
+  justify-content: space-between;
+  font-style: italic;
+}
+
+.select__toggle::after {
+  content: '';
+  position: absolute;
+  width: 10px;
+  height: 10px;
+  right: 10px;
+  top: 12px;
+  background-size: cover;
+  background-image: url('data:image/svg+xml,%3Csvg xmlns="http://www.w3.org/2000/svg" height="100" width="100"%3E%3Cpath d="M97.625 25.3l-4.813-4.89c-1.668-1.606-3.616-2.41-5.84-2.41-2.27 0-4.194.804-5.777 2.41L50 52.087 18.806 20.412C17.223 18.805 15.298 18 13.03 18c-2.225 0-4.172.804-5.84 2.41l-4.75 4.89C.813 26.95 0 28.927 0 31.23c0 2.346.814 4.301 2.439 5.865l41.784 42.428C45.764 81.174 47.689 82 50 82c2.268 0 4.215-.826 5.84-2.476l41.784-42.428c1.584-1.608 2.376-3.563 2.376-5.865 0-2.26-.792-4.236-2.375-5.932z"/%3E%3C/svg%3E');
+}
+
+.select__toggle:focus {
+  outline: none;
+}
+
+.select.select--show .select__toggle::after {
+  transform: rotate(180deg);
+}
+
+.select__dropdown {
+  padding: 10px;
+  display: none;
+  position: absolute;
+  top: 105%;
+  left: 0;
+  min-width: 200px;
+  border: 1px solid #ccc;
+  max-height: 200px;
+  overflow-y: auto;
+  border-radius: 10px;
+  z-index: 2;
+  background-color: #fff;
+}
+
+.select.select--show .select__dropdown {
+  display: block;
+}
+
+.select.select--show .select__backdrop {
+  display: block;
+}
+
+.select__options {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.select__option {
+  padding: 5px 10px;
+}
+
+.select__option.select__option--selected {
+  background-color: #e1f5fe;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.select__option.select__option--selected::after {
+  content: '';
+  width: 0.75rem;
+  height: 0.75rem;
+  color: #0277bd;
+  background-size: cover;
+  background-image: url('data:image/svg+xml,%3Csvg xmlns="http://www.w3.org/2000/svg" height="100" width="100" class="svg-inline--fa fa-check fa-w-16" data-icon="check" data-prefix="fas" aria-hidden="true"%3E%3Cpath d="M33.964 85.547l-32.5-32.251a4.935 4.935 0 010-7.017l7.071-7.017a5.027 5.027 0 017.071 0L37.5 60.987l46.894-46.534a5.028 5.028 0 017.07 0l7.072 7.017a4.935 4.935 0 010 7.017l-57.5 57.06a5.027 5.027 0 01-7.072 0z" fill="%230277bd"/%3E%3C/svg%3E');
+}
+
+.select__option:hover{
+  background-color: #f5f5f5;
+  cursor: pointer;
+  transition: 0.2s background-color ease-in-out;
+}
+
+.select__range-box{
+  display: flex;
+  justify-content: space-between;
+}
+
+.select__range-input{
+  margin-right: 15px;
+}
