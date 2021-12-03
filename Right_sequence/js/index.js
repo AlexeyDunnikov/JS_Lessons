@@ -24,7 +24,7 @@ function isValid(s){
         }
     }
 
-    return true;
+    return stack.length === 0;
 }
 
 console.log(isValid(s1));
