@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <link href="css/style.css" rel="stylesheet" />
+  </head>
+  <body>
+    <div class="wrapper">
+      <header class="header"></header>
+      <main class="main">
+        <section class="game">
+          <div class="container">
+            <div class="game__inner">
+              <div class="game__content">
+                <div class="field"></div>
+                <p class="game__move">
+                  Ходит: <span class="game__move-value"></span>
+                </p>
+                <button class="game__btn-repeat">
+                  Заново
+                </button>
+              </div>
+
+              <div class="game__info-wrapper">
+                <p class="game__info-win">
+                  Выиграл x: <span class="game__info-win--x"></span>
+                </p>
+                <p class="game__info-win">
+                  Выиграл 0: <span class="game__info-win--0"></span>
+                </p>
+                <p class="game__info-draw"> 
+                  Ничья: <span class="game__info-draw-value"></span>
+                </p>
+              </div>
+            </div>
+          </div>
+        </section>
+      </main>
+      <footer class="footer"></footer>
+    </div>
+
+    <script type="module" src="js/index.js"></script>
+  </body>
+</html>
