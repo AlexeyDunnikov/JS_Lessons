@@ -1,6 +1,6 @@
 import { gameOptions } from "./constants.js";
 
-export class Game {
+export default class Game {
   players = [];
 
   constructor() {
@@ -16,25 +16,25 @@ export class Game {
     this.setDefault();
 
     this.fieldEl.addEventListener("click", (evt) => {
-      if (evt.target.dataset.value) {
-        return;
-      }
-
       if (!evt.target.classList.contains("field__cell")) {
         return;
       }
 
+      if (evt.target.dataset.value) {
+        return;
+      }
+      
       evt.target.dataset.value = this.activePlayerInd === 0 ? "cross" : "nule";
 
       this.updateVirtualField(evt.target);
 
-      //Кто-то выиграл
+      //Somebody win
       if (this.checkWinner(this.virtualField)) {
         this.activePlayer.win();
         this.clearField();
       }
 
-      //Ничья
+      //Draw
       if (this.checkDraw()) {
         this.draw++;
         this.updateDraws();
@@ -73,28 +73,29 @@ export class Game {
   }
 
   checkWinner(arr) {
-    function Eq(a, b, c) {
-      return a !== 0 && a == b && a == c;
-    }
     for (let i = 0; i < 3; i++) {
-      if (Eq(arr[0][i], arr[1][i], arr[2][i])) {
+      if (this.Eq(arr[0][i], arr[1][i], arr[2][i])) {
         return arr[0][i];
       }
 
-      if (Eq(arr[i][0], arr[i][1], arr[i][2])) {
+      if (this.Eq(arr[i][0], arr[i][1], arr[i][2])) {
         return arr[i][0];
       }
     }
 
-    if (Eq(arr[0][0], arr[1][1], arr[2][2])) {
+    if (this.Eq(arr[0][0], arr[1][1], arr[2][2])) {
       return arr[0][0];
     }
 
-    if (Eq(arr[0][2], arr[1][1], arr[2][0])) {
+    if (this.Eq(arr[0][2], arr[1][1], arr[2][0])) {
       return arr[0][2];
     }
 
     return 0;
+  }
+
+  Eq(a, b, c) {
+    return a !== 0 && a == b && a == c;
   }
 
   checkDraw() {
@@ -123,17 +124,21 @@ export class Game {
   addCells() {
     for (let i = 0; i < gameOptions.SIZE; i++) {
       for (let j = 0; j < gameOptions.SIZE; j++) {
-        const cell = document.createElement("div");
-        cell.classList.add("field__cell");
-
-        cell.dataset.row = i;
-        cell.dataset.coll = j;
-        cell.dataset.value = "";
-
-        this.fieldEl.append(cell);
+        this.createCell(i, j);
       }
     }
     this.fieldEl.style.gridTemplateColumns = `repeat(${gameOptions.SIZE}, 100px)`;
+  }
+
+  createCell(i, j) {
+    const cell = document.createElement("div");
+    cell.classList.add("field__cell");
+
+    cell.dataset.row = i;
+    cell.dataset.coll = j;
+    cell.dataset.value = "";
+
+    this.fieldEl.append(cell);
   }
 
   updateDraws() {

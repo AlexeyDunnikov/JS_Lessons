@@ -52,22 +52,22 @@
   border-radius: 50%;
 }
 
-.game__info-wrapper{
-    padding: 20px;
-    border: 1px solid #000;
-    border-radius: 5px;
+.game__info-wrapper {
+  padding: 20px;
+  border: 1px solid #000;
+  border-radius: 5px;
 }
 
-.game__move{
-    font-size: 30px;
-    margin-bottom: 20px;
+.game__move {
+  font-size: 30px;
+  margin-bottom: 20px;
 }
 
-.game__btn-repeat{
-    margin: 0 auto;
-    background-color: #e3e3e3;
-    padding: 5px 15px;
-    border: 1px solid #000;
-    cursor: pointer;
-    border-radius: 5px;
+.game__btn-repeat {
+  margin: 0 auto;
+  background-color: #e3e3e3;
+  padding: 5px 15px;
+  border: 1px solid #000;
+  cursor: pointer;
+  border-radius: 5px;
 }
