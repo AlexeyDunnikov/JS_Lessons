@@ -41,7 +41,7 @@ export default class Game {
         this.clearField();
       }
 
-      this.changeActivity();
+      this.changePlayer();
       this.moveEl.textContent = this.activePlayer.getName();
     });
   }
@@ -74,27 +74,27 @@ export default class Game {
 
   checkWinner(arr) {
     for (let i = 0; i < 3; i++) {
-      if (this.Eq(arr[0][i], arr[1][i], arr[2][i])) {
+      if (this.isWinMove(arr[0][i], arr[1][i], arr[2][i])) {
         return arr[0][i];
       }
 
-      if (this.Eq(arr[i][0], arr[i][1], arr[i][2])) {
+      if (this.isWinMove(arr[i][0], arr[i][1], arr[i][2])) {
         return arr[i][0];
       }
     }
 
-    if (this.Eq(arr[0][0], arr[1][1], arr[2][2])) {
+    if (this.isWinMove(arr[0][0], arr[1][1], arr[2][2])) {
       return arr[0][0];
     }
 
-    if (this.Eq(arr[0][2], arr[1][1], arr[2][0])) {
+    if (this.isWinMove(arr[0][2], arr[1][1], arr[2][0])) {
       return arr[0][2];
     }
 
     return 0;
   }
 
-  Eq(a, b, c) {
+  isWinMove(a, b, c) {
     return a !== 0 && a == b && a == c;
   }
 
@@ -111,7 +111,7 @@ export default class Game {
     this.players.push(player);
   }
 
-  changeActivity() {
+  changePlayer() {
     this.activePlayerInd++;
 
     if (this.activePlayerInd > this.players.length - 1) {
@@ -153,7 +153,7 @@ export default class Game {
     this.virtualField = [];
 
     for (let i = 0; i < gameOptions.SIZE; i++) {
-      let innerArr = [];
+      const innerArr = [];
       for (let j = 0; j < gameOptions.SIZE; j++) {
         innerArr.push(0);
       }
