@@ -1,12 +1,13 @@
 import { getTrends, getPopular, getTop } from "./services.js";
-import { renderCards } from "./renderCards.js";
+import { renderCards } from "./render_cards.js";
+import { getRating } from "./helper.js";
 
 const filmWeek = document.querySelector(".film-week");
 const filmWeekTmp = document.querySelector(".film-week-template");
 
-const firstRender = (data) => {
-  const filmNameOriginal = data.original_title ?? data.original_name;
-  const filmNameTranslated = data.title ?? data.name;
+const renderWeekVideo = (data) => {
+  const originalFilmName = data.original_title ?? data.original_name;
+  const translatedFilmName = data.title ?? data.name;
 
   const filmWeekCloned = filmWeekTmp.content.cloneNode(true);
 
@@ -14,30 +15,29 @@ const firstRender = (data) => {
   const filmWeekOriginalTitle = filmWeekCloned.querySelector(
     ".film-week__title_origin"
   );
-  filmWeekOriginalTitle.innerHTML = filmNameOriginal;
+  filmWeekOriginalTitle.innerHTML = originalFilmName;
 
   //translated title
   const filmWeekTitle = filmWeekCloned.querySelector(".film-week__title");
-  filmWeekTitle.innerHTML = filmNameTranslated;
+  filmWeekTitle.innerHTML = translatedFilmName;
 
   //rating
   const filmWeekRating = filmWeekCloned.querySelector(
     ".film-week__container[data-rating]"
   );
-  let rating = data.vote_average;
-  if (rating === 0) {
-    rating = "-";
-  }
-  filmWeekRating.dataset.rating = rating;
+  
+  filmWeekRating.dataset.rating = getRating(data);
 
   //background image
   const filmWeekBackground = filmWeekCloned.querySelector(".film-week__poster");
   filmWeekBackground.src = `https://www.themoviedb.org/t/p/w1920_and_h800_multi_faces/${data.backdrop_path}`;
-  filmWeekBackground.alt = `Постер ${filmNameTranslated}`;
+  filmWeekBackground.alt = `Постер ${translatedFilmName}`;
 
   filmWeek.innerHTML = "";
   filmWeek.append(filmWeekCloned);
 };
+
+
 
 export const renderVideo = async () => {
   const data = await getTrends({
@@ -48,7 +48,7 @@ export const renderVideo = async () => {
 
   const [firstCard, ...otherCard] = data.results;
 
-  firstRender(firstCard);
+  renderWeekVideo(firstCard);
 
   renderCards(otherCard);
 };

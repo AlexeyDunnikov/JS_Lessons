@@ -6,7 +6,7 @@ const closeMenu = (nav, activeClass) => {
   nav.classList.remove(activeClass);
 };
 
-export const slideMenu = ({
+export const initializeSlideMenu = ({
   menu,
   classActiveMenu,
   openBtn,

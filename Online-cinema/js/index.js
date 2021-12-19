@@ -1,8 +1,8 @@
-import { slideMenu } from "./menu.js";
+import { initializeSlideMenu } from "./menu.js";
 import { renderVideo } from "./render_video.js";
 import { menuLinks } from "./menu_links.js";
 
-slideMenu({
+initializeSlideMenu({
   menu: ".navigation",
   classActiveMenu: "navigation_active",
   openBtn: ".header__burger-btn",
